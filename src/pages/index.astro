@@ -2,7 +2,63 @@
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="Welcome to Astro.">
-  <h1>I am simply god</h1>
-  <p>Amogus</p>
+<Layout title="Best Website - Home">
+  <section class="hero">
+    <h1>Hi I'm a hero!</h1>
+    <p>Now this is epic...</p>
+  </section>
+  <h2>Projects</h2>
+  <p>Here are my projects.</p>
+  <section class="project-grid">
+    <article>
+      <p>Raymarching Engine</p>
+      <img src="http://placebacon.net/300/300?image=3" width="300" alt="" />
+    </article>
+    <article>
+      <p>Voxel Life</p>
+      <img src="http://placebacon.net/300/300?image=4" width="300" alt="" />
+    </article>
+    <article>
+      <p>Desmos Plane</p>
+      <img src="http://placebacon.net/300/300?image=5" width="300" alt="" />
+    </article>
+    <article>
+      <p>Balls</p>
+      <img src="http://placebacon.net/300/300?image=6" width="300" alt="" />
+    </article>
+  </section>
 </Layout>
+
+<style>
+  .hero {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & > h1 {
+      font-size: 2.5rem;
+    }
+
+    & > p {
+    }
+  }
+
+  .project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 1rem;
+  }
+
+  article {
+    max-width: 200px;
+    margin: 0;
+    transition: translate var(--pico-transition);
+
+    &:hover {
+      translate: 0 -4px;
+    }
+  }
+</style>
