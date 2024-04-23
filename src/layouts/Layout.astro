@@ -15,6 +15,7 @@ const { title, description = "The Best Site" } = Astro.props;
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme" content="light" />
+    <base href={import.meta.env.BASE_URL} />
     <!--=== Favicon ===-->
     <link rel="icon" href="https://fav.farm/🔥" />
     <!--=== CDN links ===-->
