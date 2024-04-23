@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "The Best Site" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <!--=== HTML Meta Tags ===-->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <!--=== Favicon ===-->
+    <link rel="icon" href="https://fav.farm/🔥" />
+    <!--=== CDN links ===-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+    <!--=== Stylesheet ===-->
+  </head>
+  <body>
+    <header class="container">
+      <div class="logo">The Best Website Ever</div>
+      <nav>
+        <ul>
+          <li>
+            <a href="./">Home</a>
+          </li>
+          <li>
+            <a href="./ligma">Ligma</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+  </body>
+</html>
