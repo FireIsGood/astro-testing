@@ -1,4 +1,6 @@
 ---
+import ThemeSwitcher from "@/components/ThemeSwitcher.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -7,29 +9,46 @@ const { title, description = "The Best Site" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" data-theme="light">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <!--=== HTML Meta Tags ===-->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
     <base href={import.meta.env.BASE_URL} />
     <!--=== Favicon ===-->
     <link rel="icon" href="https://fav.farm/🔥" />
     <!--=== CDN links ===-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
     <!--=== Stylesheet ===-->
+    <script is:inline>
+      // This must be inline to stop FOUC
+
+      // Get the theme from local storage, otherwise color scheme preference, otherwise light
+      const theme = (() => {
+        if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      // Set a data attribute for Pico, but don't store it
+      // (users may change their preference between visits)
+      document.documentElement.setAttribute("data-theme", theme);
+    </script>
   </head>
   <body>
     <header class="container-fluid">
       <div class="logo">The Best Website Ever</div>
       <nav>
         <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
+          <li><a href="/">Home</a></li>
+          <li><ThemeSwitcher /></li>
         </ul>
       </nav>
     </header>
