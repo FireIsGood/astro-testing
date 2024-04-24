@@ -23,21 +23,56 @@ const { title, description = "The Best Site" } = Astro.props;
     <!--=== Stylesheet ===-->
   </head>
   <body>
-    <header class="container">
+    <header class="container-fluid">
       <div class="logo">The Best Website Ever</div>
       <nav>
         <ul>
           <li>
             <a href="/">Home</a>
           </li>
-          <li>
-            <a href="/ligma">Ligma</a>
-          </li>
         </ul>
       </nav>
     </header>
-    <main class="container">
+    <main class="container-fluid">
       <slot />
     </main>
+    <footer class="container-fluid">
+      <p>Made with ✈ by me!</p>
+    </footer>
   </body>
 </html>
+
+<style>
+  header,
+  main,
+  footer {
+    max-width: 960px;
+  }
+
+  main {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+  }
+
+  header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    & > * {
+      margin: 0;
+    }
+  }
+
+  :root nav {
+    margin-left: auto;
+  }
+  .logo {
+    color: var(--pico-contrast);
+    font-size: 1.2rem;
+  }
+
+  footer {
+    font-size: 14px;
+  }
+</style>
