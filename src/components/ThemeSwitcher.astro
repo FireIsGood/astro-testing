@@ -1,5 +1,6 @@
 <script>
   type Theme = "light" | "dark";
+  const themeToggle = document.querySelectorAll(".theme-toggle");
   function getTheme() {
     if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
       return localStorage.getItem("theme");
@@ -17,9 +18,13 @@
 
   function updateButtonStyles() {
     if (getTheme() == "dark") {
-      themeToggle?.classList.add("theme-toggle--toggled");
+      themeToggle?.forEach((toggle) => {
+        toggle.classList.add("theme-toggle--toggled");
+      });
     } else {
-      themeToggle?.classList.remove("theme-toggle--toggled");
+      themeToggle?.forEach((toggle) => {
+        toggle.classList.remove("theme-toggle--toggled");
+      });
     }
   }
 
@@ -28,8 +33,9 @@
     getTheme() === "light" ? setTheme("dark") : setTheme("light");
     updateButtonStyles();
   }
-  const themeToggle = document.querySelector(".theme-toggle");
-  themeToggle?.addEventListener("click", toggleTheme);
+  themeToggle?.forEach((toggle) => {
+    toggle.addEventListener("click", toggleTheme);
+  });
 
   // Set initial button style
   updateButtonStyles();
